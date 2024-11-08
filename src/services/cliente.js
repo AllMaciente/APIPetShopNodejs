@@ -4,13 +4,22 @@ class ServiceCliente {
   async GetClientes() {
     return ModelCliente.findAll(); // Usa diretamente o modelo exportado
   }
+  async GetCliente(id) {
+    if (!id || isNaN(id)) {
+      throw new Error("Favor informar o Id");
+    }
+    const cliente = await ModelCliente.findByPk(parseInt(id));
+    if (!cliente) {
+      throw new Error("Cliente nao encontrado");
+    }
+    return cliente;
+  }
   async CreateCliente(nome, telefone) {
     if (!nome || !telefone) {
       throw new Error("favor preacher todos os dados");
     }
     return ModelCliente.create({ nome, telefone });
   }
-
   async UpdateCliente(id, nome, telefone) {
     if (!id) {
       throw new Error("Favor informar o Id");
