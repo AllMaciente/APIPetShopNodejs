@@ -1,9 +1,9 @@
-const { ModelClientes } = require("../models");
+const { ModelCliente } = require("../models"); // Corrija o caminho se necessário
 
-class ServiceClient {
-  async GetClients() {
-    return ModelClientes.model.findAll();
+class ServiceCliente {
+  async GetClientes() {
+    return ModelCliente.findAll(); // Usa diretamente o modelo exportado
   }
 }
 
-module.exports = new ServiceClient();
+module.exports = new ServiceCliente();

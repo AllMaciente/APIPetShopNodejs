@@ -17,13 +17,15 @@ class ModelCachorro {
       raca: {
         type: database.db.Sequelize.STRING,
       },
-    });
-  }
-
-  associate(models) {
-    this.model.belongsTo(models.ModelCliente, {
-      foreignKey: "clienteId",
-      as: "cliente",
+      clienteId: {
+        // Chave estrangeira para referenciar o dono
+        type: database.db.Sequelize.INTEGER,
+        references: {
+          model: "clientes", // Nome da tabela cliente
+          key: "id",
+        },
+        onDelete: "CASCADE",
+      },
     });
   }
 }

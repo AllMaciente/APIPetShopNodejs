@@ -1,13 +1,13 @@
-const ServiceClient = require("../services/cliente");
+const ServiceCliente = require("../services/cliente");
 
-class ControllerClient {
+class ControllerCliente {
   async GetClients(req, res) {
     try {
-      const clients = await ServiceClient.GetClients();
-      res.send({ msg: clients });
+      const clientes = await ServiceCliente.GetClientes();
+      res.send({ msg: clientes });
     } catch (error) {
       res.status(500).send({ msg: error.message });
     }
   }
 }
-module.exports = new ControllerClient();
+module.exports = new ControllerCliente();

@@ -1,8 +1,8 @@
 const express = require("express");
-const ControllerClient = require("../controllers/cliente");
+const ControllerCliente = require("../controllers/cliente");
 
 const router = express.Router();
 
-router.get("/", ControllerClient.GetClients);
+router.get("/", ControllerCliente.GetClients);
 
 module.exports = router;

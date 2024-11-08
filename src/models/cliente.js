@@ -17,14 +17,6 @@ class ModelCliente {
       },
     });
   }
-
-  associate(models) {
-    // Um cliente pode ter vários cachorros
-    this.model.hasMany(models.ModelCachorro, {
-      foreignKey: "clienteId",
-      as: "cachorros",
-    });
-  }
 }
 
-module.exports = new ModelCliente().model;
+module.exports = new ModelCliente().model; // Exporta o modelo diretamente

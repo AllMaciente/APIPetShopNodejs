@@ -1,13 +1,11 @@
-// models/index.js
 const ModelCliente = require("./cliente");
 const ModelCachorro = require("./cachorro");
 
-// Inicialize associações
-ModelCliente.associate({ ModelCachorro });
-ModelCachorro.associate({ ModelCliente });
+// Associação de um para muitos
+ModelCliente.hasMany(ModelCachorro, { foreignKey: "clienteId" });
+ModelCachorro.belongsTo(ModelCliente, { foreignKey: "clienteId" });
 
-// Exporte os modelos para uso em outras partes da aplicação
 module.exports = {
-  ModelCliente,
   ModelCachorro,
+  ModelCliente,
 };
