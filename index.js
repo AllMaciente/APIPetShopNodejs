@@ -1,6 +1,7 @@
 const express = require("express");
 const routerCliente = require("./src/routers/cliente");
 const routerCachorro = require("./src/routers/cachorro");
+const routerUser = require("./src/routers/user");
 const database = require("./src/config/database");
 require("dotenv").config();
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use("/cliente", routerCliente);
 app.use("/cachorro", routerCachorro);
+app.use("/user", routerUser);
 
 const PORT = 3000;
 
