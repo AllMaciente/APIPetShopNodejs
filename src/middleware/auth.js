@@ -17,6 +17,8 @@ function auth(req, res, next) {
         .send({ msg: "Token não informado ou sem permissão." });
     }
 
+    req.user = decoded;
+
     console.log(decoded);
 
     next();

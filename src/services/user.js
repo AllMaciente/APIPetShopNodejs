@@ -1,3 +1,4 @@
+const { Model } = require("sequelize");
 const { ModelUser } = require("../models");
 
 class serviceUser {
@@ -51,19 +52,26 @@ class serviceUser {
       throw new Error("Email ou senha inválido!");
     }
 
-    const pessoa = await ModelPessoa.findOne({ where: { email } });
+    const user = await ModelUser.findOne({ where: { email } });
 
-    if (!pessoa) {
+    if (!user) {
       throw new Error("Email ou senha inválido!");
     }
 
-    const senhaValida = bcrypt.compare(password, pessoa.password);
+    const senhaValida = bcrypt.compare(password, user.senha);
 
     if (!senhaValida) {
       throw new Error("Email ou senha inválido!");
     }
 
-    return jwt.sign({ id: pessoa.id }, "segredo", { expiresIn: 60 * 60 });
+    const payload = {
+      id: user.id,
+      email: user.email,
+      senha: user.senha,
+      clienteId: user.clienteId,
+      role: user.role,
+    };
+    return jwt.sign(payload, "segredo", { expiresIn: 60 * 60 });
   }
 }
 
